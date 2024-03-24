@@ -108,6 +108,16 @@ class LinkedList:
             curr = curr.next
         
         curr.next = curr.next.next
+    
+    def get(self, index):
+        if not self.head or index >= self.length():
+            raise IndexError
+        
+        curr = self.head
+        for _ in range(index):
+            curr = curr.next
+        
+        return curr.value
         
 
 def main(ll: LinkedList):
@@ -123,6 +133,8 @@ def main(ll: LinkedList):
         t. Trauncate
         h. Headectomy
         d. Delete
+        g. Get
+        q. Quit
     """
     )
     prompt = input("Enter Your Command >>> ")
@@ -201,7 +213,21 @@ def main(ll: LinkedList):
             print("\There is Nothing to Delete.")
         except IndexError:
             print("\nIndex Out of Range.")
-        
+    
+    elif prompt == "g":
+        index = int(input("Enter Index to Get : "))
+
+        try:
+            value = ll.get(index= index)
+            print(f"\nThe Value at Index {index} is {value}.")
+        except IndexError:
+            print("\nIndex Out of Range.")
+    
+    elif prompt == "q":
+        exit()
+    
+    else:
+        print("\nYou Pressed The Wrong Key.")
 
 
 if __name__ == "__main__":
